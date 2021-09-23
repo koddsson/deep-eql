@@ -1,13 +1,11 @@
-'use strict';
-
-/* eslint-disable no-process-env */
-
-var packageJson = require('./package.json');
-var defaultTimeout = 120000;
-var browserifyIstanbul = require('browserify-istanbul');
+const packageJson = require('./package.json');
+const defaultTimeout = 120000;
+const browserifyIstanbul = require('browserify-istanbul');
 module.exports = function configureKarma(config) {
-  var localBrowsers = [ 'PhantomJS' ];
-  var sauceLabsBrowsers = {
+  const localBrowsers = [
+    'PhantomJS',
+  ];
+  const sauceLabsBrowsers = {
     SauceChromeLatest: {
       base: 'SauceLabs',
       browserName: 'Chrome',
@@ -70,8 +68,8 @@ module.exports = function configureKarma(config) {
   });
 
   if (process.env.SAUCE_ACCESS_KEY && process.env.SAUCE_USERNAME) {
-    var branch = 'local';
-    var build = 'localbuild';
+    const branch = 'local';
+    let build = 'localbuild';
     config.reporters.push('saucelabs');
     config.set({
       customLaunchers: sauceLabsBrowsers,
@@ -81,7 +79,11 @@ module.exports = function configureKarma(config) {
         tunnelIdentifier: new Date().getTime(),
         recordVideo: true,
         startConnect: true,
-        tags: [ 'typeDetect_' + packageJson.version, process.env.SAUCE_USERNAME + '@' + branch, build ],
+        tags: [
+          `typeDetect_${ packageJson.version }`,
+          `${ process.env.SAUCE_USERNAME }@${ branch }`,
+          build,
+        ],
       },
     });
   }
