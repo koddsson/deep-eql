@@ -2,9 +2,7 @@ const packageJson = require('./package.json');
 const defaultTimeout = 120000;
 const browserifyIstanbul = require('browserify-istanbul');
 module.exports = function configureKarma(config) {
-  const localBrowsers = [
-    'PhantomJS',
-  ];
+  const localBrowsers = [ 'PhantomJS' ];
   const sauceLabsBrowsers = {
     SauceChromeLatest: {
       base: 'SauceLabs',
@@ -40,6 +38,7 @@ module.exports = function configureKarma(config) {
   config.set({
     basePath: '',
     browsers: localBrowsers,
+    // eslint-disable-next-line no-process-env
     logLevel: process.env.npm_config_debug ? config.LOG_DEBUG : config.LOG_INFO,
     frameworks: [ 'browserify', 'mocha' ],
     files: [ 'test/*.js' ],
@@ -67,9 +66,10 @@ module.exports = function configureKarma(config) {
     singleRun: true,
   });
 
+  // eslint-disable-next-line no-process-env
   if (process.env.SAUCE_ACCESS_KEY && process.env.SAUCE_USERNAME) {
     const branch = 'local';
-    let build = 'localbuild';
+    const build = 'localbuild';
     config.reporters.push('saucelabs');
     config.set({
       customLaunchers: sauceLabsBrowsers,
@@ -79,11 +79,8 @@ module.exports = function configureKarma(config) {
         tunnelIdentifier: new Date().getTime(),
         recordVideo: true,
         startConnect: true,
-        tags: [
-          `typeDetect_${ packageJson.version }`,
-          `${ process.env.SAUCE_USERNAME }@${ branch }`,
-          build,
-        ],
+        // eslint-disable-next-line no-process-env
+        tags: [ `typeDetect_${ packageJson.version }`, `${ process.env.SAUCE_USERNAME }@${ branch }`, build ],
       },
     });
   }

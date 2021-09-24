@@ -1,4 +1,3 @@
-/* globals Symbol: false, Uint8Array: false, WeakMap: false */
 /*!
  * deep-eql
  * Copyright(c) 2013 Jake Luer <jake@alogicalparadox.com>
@@ -288,7 +287,7 @@ function entriesEqual(leftHandOperand, rightHandOperand, options) {
  */
 
 function iterableEqual(leftHandOperand, rightHandOperand, options) {
-  const length = leftHandOperand.length;
+  const { length } = leftHandOperand;
   if (length !== rightHandOperand.length) {
     return false;
   }
@@ -389,7 +388,7 @@ function getEnumerableKeys(target) {
  * @return {Boolean} result
  */
 function keysEqual(leftHandOperand, rightHandOperand, keys, options) {
-  const length = keys.length;
+  const { length } = keys;
   if (length === 0) {
     return true;
   }
