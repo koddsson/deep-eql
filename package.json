@@ -38,17 +38,14 @@
   },
   "eslintConfig": {
     "extends": [
-      "strict/es5"
+      "eslint:recommended"
     ],
-    "rules": {
-      "complexity": 0,
-      "no-underscore-dangle": 0,
-      "no-use-before-define": 0,
-      "spaced-comment": 0
+    "env": {
+        "es6": true
     },
     "parserOptions": {
       "sourceType": "module",
-      "ecmaVersion": 2015
+      "ecmaVersion": 2020
     }
   },
   "dependencies": {
@@ -60,17 +57,17 @@
     "@web/test-runner": "^0.16.1",
     "benchmark": "^2.1.0",
     "coveralls": "^3.1.1",
-    "eslint": "^7.32.0",
+    "eslint": "^8.39.0",
     "eslint-config-strict": "^14.0.1",
     "eslint-plugin-filenames": "^1.3.2",
     "istanbul": "^0.4.2",
     "kewlr": "^0.4.1",
-    "lcov-result-merger": "^1.0.2",
+    "lcov-result-merger": "^4.1.0",
     "lodash.isequal": "^4.4.0",
-    "mocha": "^9.1.1",
+    "mocha": "^10.2.0",
     "simple-assert": "^1.0.0"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=14"
   }
 }
